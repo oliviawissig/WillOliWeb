@@ -41,9 +41,9 @@ export default function Articles() {
                   {a.id}
                 </OWLink>
                 <h2 className="italic text-base mb-0">by {a.author}</h2>
-                <p className="mt-0 text-[14px] text-slate-500">
+                {/* <p className="mt-0 text-[14px] text-slate-500">
                   <MessagesCount spotId="sp_BWykFJiw" postId={a.id} /> Comments
-                </p>
+                </p> */}
               </div>
             );
           })}

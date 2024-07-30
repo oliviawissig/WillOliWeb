@@ -64,27 +64,27 @@ export default function ArticlePost({ params }: Props) {
     foo();
   }, []);
 
-  useEffect(() => {
-    const foo2 = async () => {
-      const post_id = article.id;
-      fetch(
-        `https://open-api.spot.im/v1/messages-count?spot_id=sp_BWykFJiw&posts_ids=${post_id}`,
-        {
-          cache: "no-store",
-        }
-      )
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          setCount(data.messages_count[post_id]);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-    foo2();
-  }, [article.id]);
+  // useEffect(() => {
+  //   const foo2 = async () => {
+  //     const post_id = article.id;
+  //     fetch(
+  //       `https://open-api.spot.im/v1/messages-count?spot_id=sp_BWykFJiw&posts_ids=${post_id}`,
+  //       {
+  //         cache: "no-store",
+  //       }
+  //     )
+  //       .then((response) => {
+  //         return response.json();
+  //       })
+  //       .then((data) => {
+  //         setCount(data.messages_count[post_id]);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   };
+  //   foo2();
+  // }, [article.id]);
 
   if (allLoading) {
     return (
@@ -196,12 +196,12 @@ export default function ArticlePost({ params }: Props) {
         alignItems={"baseline"}
       >
         <h2 className="italic">by {article.author}</h2>
-        <OWButton
+        {/* <OWButton
           startIcon={<MarkUnreadChatAlt />}
           onClick={() => handleAnchor()}
         >
           {count == "1" ? `${count} COMMENT` : `${count} COMMENTS`}
-        </OWButton>
+        </OWButton> */}
       </Box>
       {htmlParser.parse(article.content)}
 

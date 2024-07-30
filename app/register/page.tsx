@@ -1,12 +1,9 @@
 "use client";
-import { Alert, Box, Button, CircularProgress, TextField } from "@mui/material";
+import { Alert, Box, CircularProgress } from "@mui/material";
 import React, { useState } from "react";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { auth, db } from "@/app/firebase/config";
+import { auth } from "@/app/firebase/config";
 import { useRouter } from "next/navigation";
-import { deleteUser } from "firebase/auth";
-import { collection, getDocs, query, where } from "firebase/firestore";
-import { OWUser } from "../api/users/[id]/route";
 import OWTextField from "../components/OWTextField";
 import OWButton from "../components/OWButton";
 import { ArrowForward } from "@mui/icons-material";
@@ -53,7 +50,7 @@ const RegisterPage = () => {
     }
 
     //////////////////////////////////////////////////
-    // ATTEMPT TO CREATE USER 
+    // ATTEMPT TO CREATE USER
     //////////////////////////////////////////////////
 
     const res = await createUserWithEmailAndPassword(email, password);

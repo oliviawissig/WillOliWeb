@@ -13,8 +13,8 @@ export default function Home() {
       <p>
         Feel free to visit these article pages and check it out for yourself:
       </p>
-      <OWLink href="/articles">
-        <h3>Articles</h3>
+      <OWLink href="/articles" className="text-2xl">
+      Articles
       </OWLink>
     </>
   );

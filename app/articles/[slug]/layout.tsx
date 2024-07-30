@@ -22,20 +22,11 @@ export async function generateMetadata(
 
   return {
     title: tempArticle.title,
-    keywords: tempArticle.keywords,
     authors: [{ name: tempArticle.author }],
     description: `An article about ${tempArticle.title}`,
     openGraph: {
       title: tempArticle.title,
       authors: [tempArticle.author],
-      url: `http://oliviaweb.oliviawissig.com/articles/${tempArticle.id}`,
-      images: [
-        {
-          url: tempArticle.image_url, // Must be an absolute URL
-          width: 750,
-          height: 500,
-        },
-      ],
       locale: "en_US",
     },
   };

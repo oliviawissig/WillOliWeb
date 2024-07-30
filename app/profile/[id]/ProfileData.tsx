@@ -1,34 +1,18 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import {
-  collection,
-  doc,
-  getDoc,
-  query,
-  updateDoc,
-  where,
-} from "firebase/firestore";
-import { CldUploadWidget } from "next-cloudinary";
-import { Button, CircularProgress, TextField } from "@mui/material";
-import { auth, db } from "@/app/firebase/config";
+import { auth } from "@/app/firebase/config";
 import { useRouter } from "next/navigation";
 import { useAuthState } from "react-firebase-hooks/auth";
 import OWProgress from "@/app/components/OWProgress";
 import { OWUser } from "@/app/api/users/[id]/route";
-import { updateEmail } from "firebase/auth";
-import OWButton from "@/app/components/OWButton";
-import ImageIcon from "@mui/icons-material/Image";
-import { logout as OWLogout, startTTH } from "@open-web/react-sdk";
-import handleBEDCallback from "@/app/components/SSOhandler";
 
-interface CloudinaryResult {
-  url: string;
-}
+// interface CloudinaryResult {
+//   url: string;
+// }
 
-interface ImageUrlProps {
-  url: string;
-}
+// interface ImageUrlProps {
+//   url: string;
+// }
 
 interface ProfileDataProps {
   id: string;
@@ -38,16 +22,16 @@ const ProfileData = ({ id }: ProfileDataProps) => {
   const [user] = useAuthState(auth);
   const [dbUser, setDbUser] = useState<OWUser>();
   const [loading, setLoading] = useState(true);
-  const [btnLoading, setBtnLoading] = useState(false);
+  // const [btnLoading, setBtnLoading] = useState(false);
   const router = useRouter();
 
-  const [usernameEdit, setUsernameEdit] = useState(false);
-  const [emailEdit, setEmailEdit] = useState(false);
-  const [displayNameEdit, setDisplayNameEdit] = useState(false);
-  const [newEmail, setNewEmail] = useState("");
-  const [newUsername, setNewUsername] = useState("");
-  const [newDisplayName, setNewDisplayName] = useState("");
-  const [updateLoading, setUpdateLoading] = useState(false);
+  // const [usernameEdit, setUsernameEdit] = useState(false);
+  // const [emailEdit, setEmailEdit] = useState(false);
+  // const [displayNameEdit, setDisplayNameEdit] = useState(false);
+  // const [newEmail, setNewEmail] = useState("");
+  // const [newUsername, setNewUsername] = useState("");
+  // const [newDisplayName, setNewDisplayName] = useState("");
+  // const [updateLoading, setUpdateLoading] = useState(false);
 
   // const handleUpdateUsername = async () => {
   //   if (newUsername) {
