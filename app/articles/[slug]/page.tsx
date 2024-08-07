@@ -29,6 +29,7 @@ export default function ArticlePost({ params }: Props) {
   });
   const [count, setCount] = useState("");
   const [allLoading, setLoading] = useState(true);
+  const [countLoading, setCountLoading] = useState(true);
   const router = useRouter();
   const [owReady, setOwReady] = useState(true);
   const htmlParser = Parser();
@@ -64,27 +65,28 @@ export default function ArticlePost({ params }: Props) {
     foo();
   }, []);
 
-  // useEffect(() => {
-  //   const foo2 = async () => {
-  //     const post_id = article.id;
-  //     fetch(
-  //       `https://open-api.spot.im/v1/messages-count?spot_id=sp_BWykFJiw&posts_ids=${post_id}`,
-  //       {
-  //         cache: "no-store",
-  //       }
-  //     )
-  //       .then((response) => {
-  //         return response.json();
-  //       })
-  //       .then((data) => {
-  //         setCount(data.messages_count[post_id]);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   };
-  //   foo2();
-  // }, [article.id]);
+  useEffect(() => {
+    const foo2 = async () => {
+      const post_id = article.id;
+      fetch(
+        `https://open-api.spot.im/v1/messages-count?spot_id=sp_if3WYARq&posts_ids=${post_id}`,
+        {
+          cache: "no-store",
+        }
+      )
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          setCount(data.messages_count[post_id]);
+          setCountLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    foo2();
+  }, [article.id]);
 
   if (allLoading) {
     return (
@@ -95,92 +97,31 @@ export default function ArticlePost({ params }: Props) {
   }
 
   return (
-    // <OpenWebProvider
-    //   spotId="sp_BWykFJiw"
-    //   authentication={{
-    //     userId: user?.uid,
-    //     performBEDHandshakeCallback: async (codeA: string) => {
-    //       setOwReady(false);
-    //       const userId = user?.uid || "";
-    //       const BEDcallback = await handleBEDCallback(codeA, userId);
-    //       setOwReady(true);
-    //       return BEDcallback;
-    //     },
-    //   }}
-    //   tracking={{
-    //     ["spot-im-login-start"]: () => {
-    //       handleLogin();
-    //     },
-    //     ["spot-im-signup-start"]: () => {
-    //       handleSignUp();
-    //     },
-    //     ["spot-im-user-logout"]: () => {
-    //       signOut(auth);
-    //       sessionStorage.removeItem("user");
-    //     },
-    //   }}
-    // >
-    //   <div className="mb-5">
-    //     <OWLink href="/articles">
-    //       <ArrowBackIcon /> Back to articles list
-    //     </OWLink>
-    //   </div>
-    //   <h1>{article.title}</h1>
-    //   <Box
-    //     display={"flex"}
-    //     flexDirection={"row"}
-    //     width={"100%"}
-    //     justifyContent={"space-between"}
-    //     marginBottom={2}
-    //     alignItems={"baseline"}
-    //   >
-    //     <h2 className="italic">by {article.author}</h2>
-    //     <OWButton
-    //       startIcon={<MarkUnreadChatAlt />}
-    //       onClick={() => handleAnchor()}
-    //     >
-    //       {(count == "1") ? `${count} COMMENT` : `${count} COMMENTS`}
-    //     </OWButton>
-    //   </Box>
-    //   {htmlParser.parse(article.content)}
-
-    //   {/* <Chip
-    //     icon={<AutoAwesome />}
-    //     label='These article titles & body were generated with ChatGPT using characters from the show "The X Files".'
-    //     variant="outlined"
-    //     color="primary"
-    //   /> */}
-
-    //   {user &&
-    //     (owReady ? (
-    //       <div id="olivias-convo" className="pb-28">
-    //         <Conversation
-    //           postId={`${article.id}`}
-    //           postUrl={`http://oliviaweb.oliviawissig.com/articles/${article.id}`}
-    //           data-messages-count={5}
-    //         />
-    //       </div>
-    //     ) : (
-    //       <div className="flex flex row justify-center">
-    //         <OWProgress />
-    //       </div>
-    //     ))}
-    //   {!user &&
-    //     (owReady ? (
-    //       <div id="olivias-convo" className="pb-28">
-    //         <Conversation
-    //           postId={`${article.id}`}
-    //           postUrl={`http://oliviaweb.oliviawissig.com/articles/${article.id}`}
-    //           data-messages-count={5}
-    //         />
-    //       </div>
-    //     ) : (
-    //       <div className="flex flex row justify-center">
-    //         <OWProgress />
-    //       </div>
-    //     ))}
-    // </OpenWebProvider>
-    <>
+    <OpenWebProvider
+      spotId="sp_if3WYARq"
+      authentication={{
+        userId: user?.uid,
+        performBEDHandshakeCallback: async (codeA: string) => {
+          setOwReady(false);
+          const userId = user?.uid || "";
+          const BEDcallback = await handleBEDCallback(codeA, userId);
+          setOwReady(true);
+          return BEDcallback;
+        },
+      }}
+      tracking={{
+        ["spot-im-login-start"]: () => {
+          handleLogin();
+        },
+        ["spot-im-signup-start"]: () => {
+          handleSignUp();
+        },
+        ["spot-im-user-logout"]: () => {
+          signOut(auth);
+          sessionStorage.removeItem("user");
+        },
+      }}
+    >
       <div className="mb-5">
         <OWLink href="/articles">
           <ArrowBackIcon /> Back to articles list
@@ -196,22 +137,27 @@ export default function ArticlePost({ params }: Props) {
         alignItems={"baseline"}
       >
         <h2 className="italic">by {article.author}</h2>
-        {/* <OWButton
-          startIcon={<MarkUnreadChatAlt />}
-          onClick={() => handleAnchor()}
-        >
-          {count == "1" ? `${count} COMMENT` : `${count} COMMENTS`}
-        </OWButton> */}
+        {
+          <OWButton
+            startIcon={<MarkUnreadChatAlt />}
+            onClick={() => handleAnchor()}
+          >
+            {countLoading
+              ? "COMMENT"
+              : (count == "1"
+              ? `${count} COMMENT`
+              : `${count} COMMENTS`)}
+          </OWButton>
+        }
       </Box>
       {htmlParser.parse(article.content)}
 
-      {/* <Chip
+      <Chip
         icon={<AutoAwesome />}
-        label='These article titles & body were generated with ChatGPT using characters from the show "The X Files".'
+        label="These article titles & body were generated with ChatGPT using real Premier League coaches and players."
         variant="outlined"
         color="primary"
-      /> */}
-
+      />
       {user &&
         (owReady ? (
           <div id="olivias-convo" className="pb-28">
@@ -240,6 +186,6 @@ export default function ArticlePost({ params }: Props) {
             <OWProgress />
           </div>
         ))}
-    </>
+    </OpenWebProvider>
   );
 }

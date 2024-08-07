@@ -6,7 +6,6 @@ export type OWUser = {
   id: string;
   email: string;
   username: string;
-  image_url: string;
   display_name: string;
 };
 

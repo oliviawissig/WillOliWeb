@@ -6,14 +6,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import OWProgress from "@/app/components/OWProgress";
 import { OWUser } from "@/app/api/users/[id]/route";
 
-// interface CloudinaryResult {
-//   url: string;
-// }
-
-// interface ImageUrlProps {
-//   url: string;
-// }
-
 interface ProfileDataProps {
   id: string;
 }

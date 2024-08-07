@@ -18,7 +18,7 @@ export default function OWButton(props: OWButtonProps) {
         backgroundColor: "var(--brand-color)",
         textTransform: "none",
         "&:hover": {
-          backgroundColor: "#87659c",
+          backgroundColor: "var(--brand-color-hover)",
         },
       }}
     >

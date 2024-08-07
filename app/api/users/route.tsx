@@ -18,13 +18,11 @@ export async function GET(request: NextRequest) {
             email: '',
             id: '',
             username: '',
-            image_url: '',
             display_name: ''
         };
         userData.email = doc.data().email;
         userData.id = doc.data().id;
         userData.username = doc.data().username;
-        userData.image_url = doc.data().image_url;
         userData.display_name = doc.data().display_name;
         users.push(userData);
       });

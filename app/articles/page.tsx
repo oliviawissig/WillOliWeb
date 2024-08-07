@@ -4,6 +4,8 @@ import OWLink from "../components/OWLink";
 import { Article } from "../api/articles/route";
 import OWProgress from "../components/OWProgress";
 import { MessagesCount } from "@open-web/react-sdk";
+import { AutoAwesome } from "@mui/icons-material";
+import { Chip } from "@mui/material";
 
 export default function Articles() {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -41,18 +43,18 @@ export default function Articles() {
                   {a.id}
                 </OWLink>
                 <h2 className="italic text-base mb-0">by {a.author}</h2>
-                {/* <p className="mt-0 text-[14px] text-slate-500">
-                  <MessagesCount spotId="sp_BWykFJiw" postId={a.id} /> Comments
-                </p> */}
+                <p className="mt-0 text-[14px] text-slate-500">
+                  <MessagesCount spotId="sp_if3WYARq" postId={a.id} /> Comments
+                </p>
               </div>
             );
           })}
-          {/* <Chip
+          <Chip
             icon={<AutoAwesome />}
-            label='These article titles & body were generated with ChatGPT using characters from the show "The X Files".'
+            label="These article titles & body were generated with ChatGPT using real Premier League coaches and players."
             variant="outlined"
             color="primary"
-          /> */}
+          />
         </div>
       )}
     </>
