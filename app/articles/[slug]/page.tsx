@@ -143,7 +143,7 @@ export default function ArticlePost({ params }: Props) {
             onClick={() => handleAnchor()}
           >
             {countLoading
-              ? "COMMENT"
+              ? "COMMENTS"
               : (count == "1"
               ? `${count} COMMENT`
               : `${count} COMMENTS`)}
