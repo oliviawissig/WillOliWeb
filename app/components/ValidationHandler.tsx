@@ -32,7 +32,6 @@ export async function verifyUsername(username: string) {
     id: "",
     username: "",
     email: "",
-    image_url: "",
     display_name: "",
   };
 
@@ -42,7 +41,6 @@ export async function verifyUsername(username: string) {
       user.email = doc.data().email;
       user.id = doc.data().id;
       user.username = doc.data().username;
-      user.image_url = doc.data().image_url;
       user.display_name = doc.data().display_name;
     });
   });
@@ -93,7 +91,6 @@ export async function verifyEmail(email: string) {
     id: "",
     username: "",
     email: "",
-    image_url: "",
     display_name: "",
   };
 
@@ -103,7 +100,6 @@ export async function verifyEmail(email: string) {
       user.email = doc.data().email;
       user.id = doc.data().id;
       user.username = doc.data().username;
-      user.image_url = doc.data().image_url;
       user.display_name = doc.data().display_name;
     });
   });
